@@ -21,10 +21,10 @@ export const MemberViews = () => {
             components will be the Route's elements   */}
                 <Route path="home" element={<Home />} />
                 <Route path="experiences" element={<Experiences />} /> 
-                {/* <Route path="trips/bookTrip" element={<BookTrip />} /> */}
-                {/* <Route path="trips/:id" element={<TripsList />} />  */}
-                <Route path="trophies" element={<TrophiesList />} /> 
-                {/* <Route path="trophies/:id" element={<TrophiesList />} /> */}
+                {/* <Route path="trips/bookTrip" element={<BookTrip />} />  */}
+                {/* <Route path="trips" element={<TripsList />} /> */}
+                {/* <Route path="trophies" element={<TrophiesList />} />  */}
+                {/* <Route path="trophies" element={<TrophiesList />} /> */}
                 
               
             </Route>

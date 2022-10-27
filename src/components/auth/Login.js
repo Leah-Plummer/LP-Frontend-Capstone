@@ -19,13 +19,18 @@ export const Login = () => {
                         id: user.id,
                         member: user.isMember
                     }))
-
-                    navigate("/views/ApplicationViews")
+                    
+                    navigate("../views/MemberViews")
                 }
                 else {
                     window.alert("Invalid login")
                 }
             })
+    }
+
+    const twoCalls = (evt) => {
+        set(evt.target.value)
+        //setterFunction()
     }
 
     return (
@@ -36,15 +41,16 @@ export const Login = () => {
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
-                        <input type="email"
+                        <input 
+                            type="email"
                             value={email}
-                            onChange={evt => set(evt.target.value)}
+                            onChange={twoCalls}
                             className="form-control"
                             placeholder="Email address"
                             required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
+                        <button  type="submit">
                             Sign in
                         </button>
                     </fieldset>
