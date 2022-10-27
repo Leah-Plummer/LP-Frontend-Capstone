@@ -1,15 +1,66 @@
-import { GuestViews } from "../views/GuestViews"
-import { MemberViews } from "../views/MemberViews"
+import { GuestViews } from "./GuestViews"
+import { MemberViews } from "./MemberViews"
+//import { useState, useEffect } from "react";
+
 
 export const ApplicationViews = () => {
-	
+//      const [users, setUsers] = useState([])
 
+//      const [uniUserObject, setUniUserObject] = useState([])
+   
+   
+//     useEffect(
+//         () => {
+//             fetch("http://localhost:8088/users")
+//                 .then(res => res.json())
+//                 .then(
+//                     fetchedUsers => {
+//                         setUsers(fetchedUsers)
+//                     }
+//                 )
+//         },
+//         []
+//     )
 
-    const localUniUser = localStorage.getItem("uni_user")
-    const UniUserObject = JSON.parse(localUniUser)
+//         let localUniUser = "" 
+//      useEffect(
+//     () => {
+//         localUniUser = users.filter(user => {
 
-    if (UniUserObject?.member) {
-        //return employee views 
+//             return user.email.toLowerCase().startsWith(searchTermState.toLowerCase())
+//     })
+//             setUniUserObject(localUniUser)
+//     },
+//     [searchTermState]
+// )
+    let localUniUser = localStorage.getItem("uni_user")
+    let uniUserObject = JSON.parse(localUniUser) 
+
+	const Refresh = () => {
+        window.location.reload(uniUserObject)
+        localUniUser = localStorage.getItem("uni_user")
+         uniUserObject = JSON.parse(localUniUser)
+        // uniUserObject = {
+        //     id: 1,
+        //     firstName: "Killian",
+        //     lastName: "Huntington III",
+        //     email: "River_Torp@hotmail.com",
+        //     isMember: false
+        // }
+    return uniUserObject 
+    }
+
+     if (uniUserObject === "") {
+        Refresh()
+    }
+
+    
+    //window.location.reload(true)
+  
+
+    if (uniUserObject?.member) {
+        //return employee views
+       // window.location.reload(true) 
         return <MemberViews /> 
     }
     else {
