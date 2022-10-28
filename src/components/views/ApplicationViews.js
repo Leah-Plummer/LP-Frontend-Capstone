@@ -1,5 +1,6 @@
 import { GuestViews } from "./GuestViews"
 import { MemberViews } from "./MemberViews"
+//import { Authorized } from "./Authorized"
 //import { useState, useEffect } from "react";
 
 
@@ -61,7 +62,10 @@ export const ApplicationViews = () => {
     if (uniUserObject?.member) {
         //return employee views
        // window.location.reload(true) 
-        return <MemberViews /> 
+       
+            return <MemberViews /> 
+
+      
     }
     else {
         //return customer views

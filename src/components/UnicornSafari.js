@@ -2,7 +2,7 @@
 import { Route, Routes } from "react-router-dom"
 //import { Authorized } from "./views/Authorized"
 //import { Login } from "./auth/Login"
-//mport { Register } from "./auth/Register"
+//import { Register } from "./auth/Register"
 import "./UnicornSafari.css"
 //import { GuestNav } from "./nav/GuestNav"
 //import { GuestViews } from "./views/GuestViews"
