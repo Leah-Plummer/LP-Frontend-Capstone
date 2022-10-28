@@ -4,26 +4,26 @@ import { BookTrip } from "../trips/BookTrip"
 //import { MyTrips } from "../trips/MyTrips"
 import { TrophiesList } from "../trophies/TrophiesList"
 import { Experiences } from "../experiences/Experiences"
-import { TripsList } from "../trips/TripsList"
+import { MyTrips } from "../trips/MyTrips"
+
+
 
 export const MemberViews = () => {
 	return (
         <Routes>
             <Route path="/" element={
                 <>
-                    <h1>Kandy Korner</h1>
+                    <h1>Unicorn Safari</h1>
 
                     <Outlet />
                 </>
             }>
 
-            {/* when the route is "products", both the ProductSearch and Products 
-            components will be the Route's elements   */}
                 <Route path="home" element={<Home />} />
                 <Route path="experiences" element={<Experiences />} /> 
-                {/* <Route path="trips/bookTrip" element={<BookTrip />} />  */}
-                {/* <Route path="trips" element={<TripsList />} /> */}
-                {/* <Route path="trophies" element={<TrophiesList />} />  */}
+                <Route path="bookATrip" element={<BookTrip />} /> 
+                <Route path="myTrips" element={<MyTrips />} />
+                <Route path="trophies" element={<TrophiesList />} /> 
                 {/* <Route path="trophies" element={<TrophiesList />} /> */}
                 
               
