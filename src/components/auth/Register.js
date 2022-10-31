@@ -5,8 +5,9 @@ import "./Login.css"
 export const Register = (props) => {
     const [user, setUser] = useState({
         email: "",
-        fullName: "",
-        isStaff: false
+        firstName: "",
+        lastName: "",
+        isMember: true
     })
     let navigate = useNavigate()
 
@@ -23,7 +24,7 @@ export const Register = (props) => {
                 if (createdUser.hasOwnProperty("id")) {
                     localStorage.setItem("uni_user", JSON.stringify({
                         id: createdUser.id,
-                        staff: createdUser.isStaff
+                        
                     }))
 
                     navigate("/")
@@ -58,10 +59,16 @@ export const Register = (props) => {
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Please Register for Kandy Korner</h1>
                 <fieldset>
-                    <label htmlFor="fullName"> Full Name </label>
+                    <label htmlFor="firstName"> First Name </label>
                     <input onChange={updateUser}
-                           type="text" id="fullName" className="form-control"
-                           placeholder="Enter your name" required autoFocus />
+                           type="text" id="firstName" className="form-control"
+                           placeholder="Enter your first name" required autoFocus />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="lastName"> Last Name </label>
+                    <input onChange={updateUser}
+                           type="text" id="lastName" className="form-control"
+                           placeholder="Enter your last name" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="email"> Email address </label>
@@ -69,15 +76,7 @@ export const Register = (props) => {
                         type="email" id="email" className="form-control"
                         placeholder="Email address" required />
                 </fieldset>
-                <fieldset>
-                    <input onChange={(evt) => {
-                        const copy = {...user}
-                        copy.isStaff = evt.target.checked
-                        setUser(copy)
-                    }}
-                        type="checkbox" id="isMember" />
-                    <label htmlFor="email"> I am a member </label>
-                </fieldset>
+                
                 <fieldset>
                     <button type="submit"> Register </button>
                 </fieldset>
