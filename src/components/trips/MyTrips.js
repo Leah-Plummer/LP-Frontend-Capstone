@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
+import { Trip } from "./Trip"
 //import { useNavigate } from "react-router-dom"
 import "./Trips.css"
+
 
 export const MyTrips = () => {
     const [trips, setTrips] = useState([])
@@ -31,21 +33,23 @@ export const MyTrips = () => {
         [trips]
     )
 
-    return (<>
+    return <>
+    <h2>{uniUserObject.firstName} {uniUserObject.lastName}'s Adventures</h2>
+    <article className="trips">
+    {
+        filteredTrips.map(trip => <Trip key={`trip--${trip.id}`}
+            id={trip.id} 
+            userId={trip.userId}
+            date={trip.date} 
+            numberOfGuests={trip.numberOfGuests}
+            quarryId={trip.quarryId}
+            serviceId={trip.serviceId}
+            trophyId={trip.trophyId} />)
 
-        <h2> Your Trips</h2>
-
-        <article className="trips">
-            {
-                filteredTrips.map(trip => {
-                    return <section className="trip" key={trip.id}>
-                        <header>Reservation</header>
-                        <footer>Date: {trip.date}</footer>
-                    </section>
-                })
-            }
-        </article>
-    </>)
+    }
+</article>
+</>
 }
+
 
 

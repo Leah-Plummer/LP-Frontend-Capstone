@@ -21,7 +21,7 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(createdUser => {
                 if (createdUser.hasOwnProperty("id")) {
-                    localStorage.setItem("kandy_user", JSON.stringify({
+                    localStorage.setItem("uni_user", JSON.stringify({
                         id: createdUser.id,
                         staff: createdUser.isStaff
                     }))
@@ -75,8 +75,8 @@ export const Register = (props) => {
                         copy.isStaff = evt.target.checked
                         setUser(copy)
                     }}
-                        type="checkbox" id="isStaff" />
-                    <label htmlFor="email"> I am an employee </label>
+                        type="checkbox" id="isMember" />
+                    <label htmlFor="email"> I am a member </label>
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Register </button>
