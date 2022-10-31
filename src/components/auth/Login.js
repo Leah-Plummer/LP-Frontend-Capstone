@@ -22,7 +22,7 @@ export const Login = () => {
                         lastName: user.lastName
                     }))
                     
-                    navigate("../views/MemberViews")
+                    navigate("/")
                 }
                 else {
                     window.alert("Invalid login")
