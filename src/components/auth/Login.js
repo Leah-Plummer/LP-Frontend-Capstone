@@ -17,7 +17,9 @@ export const Login = () => {
                     const user = foundUsers[0]
                     localStorage.setItem("uni_user", JSON.stringify({
                         id: user.id,
-                        member: user.isMember
+                        member: user.isMember,
+                        firstName: user.firstName,
+                        lastName: user.lastName
                     }))
                     
                     navigate("../views/MemberViews")

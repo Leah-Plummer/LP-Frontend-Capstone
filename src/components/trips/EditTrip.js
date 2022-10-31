@@ -1,25 +1,11 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
-//component responsible for a form for creating a new product
-export const BookTrip = () => {
-  
-
-    const localUniUser = localStorage.getItem("uni_user")
-    const uniUserObject = JSON.parse(localUniUser)
-
-    //useState for user choices
-    const [userChoices, setUserChoices] = useState(
-        {
-            userId: uniUserObject.id,
-            date: "",
-            numberOfGuests: 0,
-            quarryId: 0,
-            serviceId: 0, 
-            trophyId: 0 
-        }
-    )
-
+export const EditTrip = () => {
+    // TODO: Provide initial state for trip
+    const {tripId} = useParams()
+    const [editedTrip, updateEditedTrip] = useState()
 
     const [quarries, setQuarries] = useState([])
 
@@ -33,6 +19,7 @@ export const BookTrip = () => {
         },
         []
     )
+   
 
     const [services, setServices] = useState([])
 
@@ -60,69 +47,98 @@ export const BookTrip = () => {
         []
     )
 
-    //store useNavigate
     const navigate = useNavigate()
 
 
-    //function to handle submit button
-    const handleSubmit = (event) => {
+    // TODO: Get employee trip info from API and update state
+
+    
+
+    useEffect(() => {
+        fetch(`http://localhost:8088/trips?_expand=quarry&_expand=trophy&_expand=service&id=${tripId}`)
+        .then(res => res.json())
+        .then((data) => {
+                const tripObject = data[0]
+                updateEditedTrip(tripObject)
+
+        })
+
+    }, [tripId])
+
+    const handleSaveButtonClick = (event) => {
         event.preventDefault()
 
-
+        /*
+            TODO: Perform the PUT fetch() call here to update the trip.
+            Navigate user to home page when done.
+        */
         const fetchOptions = {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(userChoices)
+            body: JSON.stringify(editedTrip)
         }
 
-        fetch("http://localhost:8088/trips", fetchOptions)
-            .then(res => res.json())
-            .then(() => {
-               navigate("/trips") 
-            })
+       fetch(`http://localhost:8088/trips/${tripId}`, fetchOptions)
+       .then(res => res.json())
+       .then(() => {
+        setFeedback("Updates successfully saved")
+        navigate("/trips") 
+       })
     }
 
-    //function to handle change in form fields
     const handleUserInput = (event) => {
-        const copy = { ...userChoices }
+        const copy = { ...editedTrip }
         copy[event.target.name] = event.target.value
-        setUserChoices(copy)
+        updateEditedTrip(copy)
     }
 
     const handleUserInputGuests = (event) => {
-        const copy = { ...userChoices }
+        const copy = { ...editedTrip }
         copy[event.target.name] = event.target.value
-        setUserChoices(copy)
+        updateEditedTrip(copy)
     }
 
     const handleUserInputSelect = (event) => {
-        const copy = { ...userChoices }
+        const copy = { ...editedTrip }
         copy[event.target.name] = parseInt(event.target.value)
-        setUserChoices(copy)
+        updateEditedTrip(copy)
     }
 
 
-    //return jsx form
-    return <>
-        <h1>Book a New Adventure</h1>
+    const [feedback, setFeedback] = useState("")
+
+    useEffect(() => {
+    if (feedback !== "") {
+        // Clear feedback to make entire element disappear after 3 seconds
+        setTimeout(() => setFeedback(""), 3000);
+    }
+}, [feedback])
+
+    return (
+        <>
+        <div className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
+        {feedback}
+        </div>
+
+        <h1>Edit Your Adventure</h1>
 
         <form>
             <fieldset>
                 <label htmlFor="date"> Date of Adventure
-                    <input required type="text" id="newTripDate" name="date" value={userChoices.date} onChange={handleUserInput} placeholder="MM/DD/YYYY" />
+                    <input type="text" id="newTripDate" name="date" value={editedTrip?.date}  onChange={handleUserInput} placeholder="MM/DD/YYYY" />
                 </label>
             </fieldset>
             <fieldset>
             <label htmlFor="newNumberOfGuests">Number of Guests
-                    <input type="number" required id="newNumberOfGuests" name="numberOfGuests" value={userChoices.numberOfGuests} onChange={handleUserInputGuests} />
+                    <input type="number" required id="newNumberOfGuests" name="numberOfGuests" value={editedTrip?.numberOfGuests} onChange={handleUserInputGuests} />
                 </label> 
             </fieldset>
             <fieldset>
-                <label htmlFor="newProductType"> Quarry 
+                <label htmlFor="newQuarryType"> Quarry 
                     <select required id="newQuarry" name="quarryId" onChange={handleUserInputSelect}>
-                        <option value={0}>Select a quarry option</option>
+                        <option value={editedTrip?.quarryId}>{editedTrip?.quarry.type}</option>
                         {quarries.map(
                             (quarry) => {
                                 return (<option key={quarry.id} value={quarry.id} >{quarry.type}</option>)
@@ -134,8 +150,8 @@ export const BookTrip = () => {
             </fieldset>
             <fieldset>
                 <label htmlFor="newProductType"> Service Package
-                    <select required id="newProductType" name="serviceId" onChange={handleUserInputSelect}>
-                        <option value={0}>Select a Service Package</option>
+                    <select required id="newService" name="serviceId" onChange={handleUserInputSelect}>
+                        <option value={editedTrip?.serviceId}>{editedTrip?.service.type}</option>
                         {services.map(
                             (service) => {
                                 return (<option key={service.id} value={service.id} >{service.type}</option>)
@@ -147,8 +163,8 @@ export const BookTrip = () => {
             </fieldset>
             <fieldset>
                 <label htmlFor="newTrophyType"> Trophy
-                    <select required id="newTrophyType" name="trophyId" onChange={handleUserInputSelect}>
-                        <option value={0}>Select Your Trophy</option>
+                    <select required id="newTrophy" name="trophyId" onChange={handleUserInputSelect}>
+                        <option value={editedTrip?.trophyId}>{editedTrip?.trophy.type}</option>
                         {trophies.map(
                             (trophy) => {
                                 return (<option key={trophy.id} value={trophy.id} >{trophy.type}</option>)
@@ -160,7 +176,8 @@ export const BookTrip = () => {
             </fieldset>
             
 
-            <button onClick={handleSubmit}>Submit</button>
+            <button onClick={handleSaveButtonClick}>Save Changes</button>
         </form>
-    </>
+        </>
+    )
 }

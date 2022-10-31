@@ -16,7 +16,7 @@ export const MemberNav = () => {
                 <Link className="navbar__link" to="/bookATrip">Book a Trip</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/myTrips">My Trips</Link>
+                <Link className="navbar__link" to="/trips">My Trips</Link>
             </li>
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/trophies">Trophies</Link>
