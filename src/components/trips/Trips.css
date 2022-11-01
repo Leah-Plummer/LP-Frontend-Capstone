@@ -3,6 +3,11 @@
     flex-direction: column;
 }
 
+.trip_delete {
+    margin-left: auto; 
+    background-color: red;
+}
+
 .trip {
     padding: 1rem;
     border: 1px solid rgb(30, 25, 11);
