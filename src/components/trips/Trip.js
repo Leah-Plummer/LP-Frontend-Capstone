@@ -1,9 +1,15 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { MyTrips } from "./MyTrips"
 
-export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId}) => {
+//import { DeleteTrip } from "./DeleteTrip"
+
+
+export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId, getAllTrips}) => {
     const navigate = useNavigate()
+ 
     const [quarry, setQuarry] = useState([])
+    
    
 
     
@@ -46,6 +52,20 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId}) 
         },
         [trophyId]
     )
+    const deleteTrip = (event) => {
+        event.preventDefault()
+        fetch(`http://localhost:8088/trips/${id}`, {
+          method: 'DELETE',
+        }).then(getAllTrips())
+       navigate("/trips")
+      }
+       
+      
+
+   
+       
+
+    
     
     return <section className="trip">
         <div>Date: {date}</div>
@@ -54,6 +74,8 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId}) 
         <div>Service Package: {service?.type}</div>
         <div>Trophy: {trophy?.type}</div>
         <button onClick={() => navigate(`/trips/${id}`)}>Edit</button>
+        <button onClick={deleteTrip} className="trip_delete">Delete</button>
+       
     </section>
 
 }
