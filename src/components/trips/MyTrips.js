@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
 import { Trip } from "./Trip"
-import { useNavigate } from "react-router-dom"
 import "./Trips.css"
 
 
 export const MyTrips = () => {
     const [trips, setTrips] = useState([])
     const [filteredTrips, setFilteredTrips] = useState([])
-   // const navigate = useNavigate()
 
     const localUniUser = localStorage.getItem("uni_user")
     const uniUserObject = JSON.parse(localUniUser)

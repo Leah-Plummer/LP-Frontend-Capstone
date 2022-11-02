@@ -21,6 +21,10 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Patua One", serif;
   letter-spacing: 2px;
+  font-family: 'Dancing Script', cursive;
+font-family: 'Pacifico', cursive;
+color:white;
+/* font-size:100px; */
 }
 
 p {

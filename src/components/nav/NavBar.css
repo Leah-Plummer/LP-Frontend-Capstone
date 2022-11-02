@@ -2,6 +2,11 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background-color: white;
+    color: pink;
+    font-weight: 800;
+    border: 5px solid #fc03f8;
+    border-radius: 50px;
 }
 
 .navbar__item {

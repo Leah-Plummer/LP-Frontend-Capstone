@@ -31,7 +31,7 @@ export const TrophiesList= () => {
    
        
        return <>
-           <h1>Trophies</h1>
+           <h2>Trophies</h2>
            
            <div className="trophies">
                {
@@ -39,7 +39,8 @@ export const TrophiesList= () => {
                        trophies => {
                            return <div className="trophy" key={trophies.id}>
                                <h3>{trophies.type}</h3>
-                               <div>Price: ${trophies.price}</div>
+                               <img className="trophy--image" src={`./Images/${trophies.image}`}/>
+                               <div className="price">Price: ${trophies.price}</div>
                            </div>
                        }
                    )
