@@ -14,3 +14,11 @@
     background-color: rgb(231, 236, 240);
     margin: 0.6rem;
 }
+
+.bookTrip {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: left;
+    background-color: rgb(253, 196, 240); 
+    width: 40rem; 
+}

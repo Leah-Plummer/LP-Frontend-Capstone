@@ -1,0 +1,16 @@
+.trophy {
+    padding: 1rem;
+    border: 5px solid rgb(30, 25, 11);
+    background-color: rgb(118, 18, 149);
+    margin: 0.6rem;  
+}
+
+.price {
+  color:rgb(245, 207, 103)  
+}
+img.trophy--image {
+    height: 150px;
+    width: 150px;
+    border: 5px solid rgb(245, 207, 103); 
+     
+}

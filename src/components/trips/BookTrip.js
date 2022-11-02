@@ -106,9 +106,9 @@ export const BookTrip = () => {
 
     //return jsx form
     return <>
-        <h1>Book a New Adventure</h1>
+        <h2>Book a New Adventure</h2>
 
-        <form>
+        <form className="bookTrip">
             <fieldset>
                 <label htmlFor="date"> Date of Adventure
                     <input required type="text" id="newTripDate" name="date" value={userChoices.date} onChange={handleUserInput} placeholder="MM/DD/YYYY" />
