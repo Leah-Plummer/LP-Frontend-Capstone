@@ -1,16 +1,39 @@
+.h2, h2 {
+  display: flex;
+    justify-content: center;
+    background-color:rgb(253, 196, 240);
+    color: white;
+    font-weight: 800;
+    border: 5px solid rgb(88, 29, 110);
+    border-radius: 10px;
+    align-self: center;
+    font-size: x-large;
+}
+
+.trophies {
+display: flex;
+flex-flow: row wrap;
+justify-content: space-evenly;
+ 
+}
+
 .trophy {
-    padding: 1rem;
-    border: 5px solid rgb(30, 25, 11);
-    background-color: rgb(118, 18, 149);
-    margin: 0.6rem;  
+    padding: 2rem;
+    border: 5px solid rgb(88, 29, 110);
+    border-radius: 25px;
+    background-color: rgb(253, 196, 240);
+    margin: 0.6rem; 
+    text-align: center;
+    font-size: xx-large; 
 }
 
 .price {
   color:rgb(245, 207, 103)  
 }
+
 img.trophy--image {
-    height: 150px;
-    width: 150px;
+    height: 300px;
+    width: 300px;
     border: 5px solid rgb(245, 207, 103); 
-     
+    margin:auto;   
 }

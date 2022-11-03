@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom"
 export const EditTrip = () => {
     // TODO: Provide initial state for trip
     const {tripId} = useParams()
+    let totalPrice = 0;
     const [editedTrip, updateEditedTrip] = useState()
 
     const [quarries, setQuarries] = useState([])
+    const [chosenQuarry, setChosenQuarry] = useState([])
 
     useEffect(
         () => {
@@ -19,9 +21,28 @@ export const EditTrip = () => {
         },
         []
     )
+
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/quarries?id=${editedTrip?.quarryId}`)
+            .then(res => res.json())
+            .then(quarryData => {
+                const quarryObject = quarryData[0]
+                setChosenQuarry(quarryObject)
+            })
+            
+        },
+        [editedTrip]
+        )
+        if (chosenQuarry) {
+            totalPrice += parseInt(chosenQuarry?.price) 
+            } else {
+                totalPrice = totalPrice 
+            }
    
 
     const [services, setServices] = useState([])
+    const [chosenService, setChosenService] = useState([])
 
     useEffect(
         () => {
@@ -33,8 +54,27 @@ export const EditTrip = () => {
         },
         []
     )
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/services?id=${editedTrip?.serviceId}`)
+            .then(res => res.json())
+            .then(serviceData => {
+                const serviceObject = serviceData[0]
+                setChosenService(serviceObject)
+            })
+            
+        },
+        [editedTrip]
+        )
+
+        if (chosenService) {
+        totalPrice += parseInt(chosenService?.price) 
+        } else {
+            totalPrice = totalPrice 
+        }
 
     const [trophies, setTrophies] = useState([])
+    const [chosenTrophy, setChosenTrophy] = useState([])
 
     useEffect(
         () => {
@@ -46,6 +86,26 @@ export const EditTrip = () => {
         },
         []
     )
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/trophies?id=${editedTrip?.trophyId}`)
+            .then(res => res.json())
+            .then(trophyData => {
+                const trophyObject = trophyData[0]
+                setChosenTrophy(trophyObject)
+            })
+            
+        },
+        [editedTrip]
+        )
+        if (chosenTrophy) {
+            totalPrice += parseInt(chosenTrophy?.price) 
+            } else {
+                totalPrice = totalPrice 
+            }
+
+     totalPrice *= parseInt(editedTrip?.numberOfGuests)
+    
 
     const navigate = useNavigate()
 
@@ -122,9 +182,9 @@ export const EditTrip = () => {
         {feedback}
         </div>
 
-        <h1>Edit Your Adventure</h1>
 
-        <form>
+        <form className="editTrip">
+        <h2>Edit Your Adventure</h2>
             <fieldset>
                 <label htmlFor="date"> Date of Adventure
                     <input type="text" id="newTripDate" name="date" value={editedTrip?.date}  onChange={handleUserInput} placeholder="MM/DD/YYYY" />
@@ -175,8 +235,8 @@ export const EditTrip = () => {
                 </label>
             </fieldset>
             
-
-            <button onClick={handleSaveButtonClick}>Save Changes</button>
+            <div className="price">${totalPrice}</div>
+            <button onClick={handleSaveButtonClick} className="trip_save">Save Changes</button>
         </form>
         </>
     )

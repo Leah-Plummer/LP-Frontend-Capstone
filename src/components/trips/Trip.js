@@ -9,7 +9,7 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId, g
     const navigate = useNavigate()
  
     const [quarry, setQuarry] = useState([])
-    
+    let totalPrice = 0
    
 
     
@@ -24,6 +24,7 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId, g
         },
         [quarryId]
     )
+    totalPrice += quarry.price
 
     const [service, setService] = useState([])
 
@@ -38,6 +39,7 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId, g
         },
         [serviceId]
     )
+    totalPrice += service.price
 
     const [trophy, setTrophy] = useState([])
 
@@ -52,6 +54,8 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId, g
         },
         [trophyId]
     )
+    totalPrice += trophy.price
+
     const deleteTrip = (event) => {
         event.preventDefault()
         fetch(`http://localhost:8088/trips/${id}`, {
@@ -60,7 +64,7 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId, g
        navigate("/trips")
       }
        
-      
+ totalPrice *= numberOfGuests
 
    
        
@@ -73,7 +77,8 @@ export const Trip = ({id, date, numberOfGuests, quarryId, serviceId, trophyId, g
         <div>Quarry: {quarry?.type}</div>
         <div>Service Package: {service?.type}</div>
         <div>Trophy: {trophy?.type}</div>
-        <button onClick={() => navigate(`/trips/${id}`)}>Edit</button>
+        <div className="price">${totalPrice}</div>
+        <button onClick={() => navigate(`/trips/${id}`)}className="trip_edit">Edit</button>
         <button onClick={deleteTrip} className="trip_delete">Delete</button>
        
     </section>
