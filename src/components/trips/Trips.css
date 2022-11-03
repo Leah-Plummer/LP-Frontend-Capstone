@@ -1,24 +1,101 @@
-.trips {
-    display: flex;
-    flex-direction: column;
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+.h2, h2 {
+    text-align: center;
+    left: 50%;
+    color: rgb(88, 29, 110);
 }
 
+.trips {
+    display: flex;
+    flex-direction: row; 
+  letter-spacing: 2px;
+  font-family: 'Dancing Script', cursive;
+  font-size: x-large;
+    justify-content: space-around;
+}
+
+/* .choice {
+    color:blanchedalmond;
+    background-color: rgb(88, 29, 110);
+    width:fit-content;
+    border-radius: 5px;
+} */
+
 .trip_delete {
-    margin-left: auto; 
-    background-color: red;
+    background-color: rgb(88, 29, 110);
+    position: relative;
+    text-align: right;
+    /* left: 93%; */
+    border-radius: .25rem;
+    color:rgb(253, 196, 240);
+    margin: 20px;
+}
+
+.trip_edit {
+    background-color: rgb(252, 249, 205);
+    border-radius: .25rem;
+    color: rgb(88, 29, 110);
+}
+
+.trip_submit {
+    background-color: rgb(252, 249, 205);
+    border-radius: .25rem;
+    color: rgb(88, 29, 110);   
+}
+
+.trip_save {
+    background-color: rgb(252, 249, 205);
+    border-radius: .25rem;
+    color: rgb(88, 29, 110);   
 }
 
 .trip {
+   
     padding: 1rem;
-    border: 1px solid rgb(30, 25, 11);
-    background-color: rgb(231, 236, 240);
+    border: 3px solid rgb(88, 29, 110);
+    background-color: rgb(253, 196, 240);
     margin: 0.6rem;
+    color:rgb(67, 12, 83);
+    border-radius: .75rem;
+    font-size: x-large;
+    width: 400px;
+    height: 275px;
+
+}
+
+.editTrip {
+    background-position-x: right;
+    z-index: 1;
+    min-height: 25rem;
+    min-width: 45rem;
+    background-color: rgb(253, 196, 240); 
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;   
 }
 
 .bookTrip {
-    display: inline-block;
-    margin: 0 auto;
-    text-align: left;
+    background-position-x: right;
+    z-index: 1;
+    min-height: 25rem;
+    min-width: 45rem;
     background-color: rgb(253, 196, 240); 
-    width: 40rem; 
+    border: 5px solid rgb(88, 29, 110);
+    border-radius: 10px;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    font-family: "Patua One", serif;
+    letter-spacing: 2px;
+    font-family: 'Dancing Script', cursive;
+  font-family: 'Pacifico', cursive;
+  color:rgb(88, 29, 110);
+  font-size: x-large;
 }
+.price {
+    text-align: right;
+    font-size: x-large;
+    color:rgb(67, 12, 83)
+}
+
+
+
+

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Trip } from "./Trip"
 import "./Trips.css"
-
+import '@fwrlines/swatch/dist/main.min.css'
 
 export const MyTrips = () => {
     const [trips, setTrips] = useState([])

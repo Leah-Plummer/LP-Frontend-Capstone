@@ -2,11 +2,15 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
-    background-color: white;
-    color: pink;
+    background-color:rgb(253, 196, 240);
     font-weight: 800;
-    border: 5px solid #fc03f8;
-    border-radius: 50px;
+    border: 5px solid rgb(88, 29, 110);
+    border-radius: 10px;
+    font-family: "Patua One", serif;
+    letter-spacing: 2px;
+    font-family: 'Dancing Script', cursive;
+  font-family: 'Pacifico', cursive;
+ 
 }
 
 .navbar__item {
@@ -16,5 +20,11 @@
 
 .navbar__login {
     margin-left: auto;
+}
+
+.navbar__link {
+    color:  rgb(88, 29, 110);
+    font-size: x-large;
+
 }
 
